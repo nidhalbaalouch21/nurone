@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Nevera';
+  src: url('/fonts/Nevera-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libra';
+  src: url('/fonts/LibraSans.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Libra';
+  src: url('/fonts/LibraSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-background: var(--bg);
+  --color-foreground: var(--text-h);
+  --color-primary: var(--primary);
+  --color-muted: var(--code-bg);
+  --color-muted-foreground: var(--text);
+  --color-border: var(--border);
+  --font-nevera: 'Nevera', sans-serif;
+  --font-libra: 'Libra', sans-serif;
+}
+
+:root {
+  --text: #E5E5E5;
+  --text-h: #ffffff;
+  --bg: #0A0A0B;
+  --primary: #2563EB;
+  --border: rgba(255, 255, 255, 0.08);
+  --code-bg: #18181b;
+  --accent: #2563EB;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-libra);
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
