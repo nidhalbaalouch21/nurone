@@ -1,17 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const AnimatedNavLink = ({
   href,
+  isActive,
   children,
 }: {
   href: string;
+  isActive?: boolean;
   children: React.ReactNode;
 }) => {
-  const defaultTextColor = "text-gray-400";
-  const hoverTextColor = "text-white";
+  const defaultTextColor = isActive
+    ? "text-white font-semibold"
+    : "text-gray-400";
+  const hoverTextColor = isActive ? "text-white font-semibold" : "text-white";
   const textSizeClass = "text-sm font-medium";
 
   return (
@@ -29,6 +33,8 @@ const AnimatedNavLink = ({
 
 export function Navbar({ onRequestAccess }: { onRequestAccess?: () => void }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useLocation();
+
   // Derive shape from menu state; transition-delay keeps the pill shape
   // until the collapse animation finishes when closing.
   const headerShapeClass = isOpen
@@ -88,10 +94,8 @@ export function Navbar({ onRequestAccess }: { onRequestAccess?: () => void }) {
 
   const navLinksData = [
     { label: "Home", href: "/" },
-    { label: "How it work", href: "/#how-it-works" },
     { label: "Labs", href: "/labs/foundation" },
     { label: "The System", href: "/the-system" },
-    { label: "FAQ", href: "/#faq" },
     { label: "Blog", href: "/blog" },
   ];
 
@@ -119,7 +123,11 @@ export function Navbar({ onRequestAccess }: { onRequestAccess?: () => void }) {
 
         <nav className="hidden md:flex items-center space-x-8 text-sm">
           {navLinksData.map((link) => (
-            <AnimatedNavLink key={link.label} href={link.href}>
+            <AnimatedNavLink
+              key={link.label}
+              href={link.href}
+              isActive={pathname === link.href}
+            >
               {link.label}
             </AnimatedNavLink>
           ))}

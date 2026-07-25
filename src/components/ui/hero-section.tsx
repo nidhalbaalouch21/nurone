@@ -1,8 +1,20 @@
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { motion, type Variants, useMotionValue, useSpring, animate } from "framer-motion";
+import {
+  motion,
+  type Variants,
+  useMotionValue,
+  useSpring,
+  animate,
+} from "framer-motion";
 
-function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
+function AnimatedCounter({
+  value,
+  duration = 2,
+}: {
+  value: number;
+  duration?: number;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, { stiffness: 50, damping: 15 });
@@ -22,7 +34,11 @@ function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: nu
   return <span ref={ref}>0</span>;
 }
 
-export function HeroSection({ onRequestAccess }: { onRequestAccess?: () => void }) {
+export function HeroSection({
+  onRequestAccess,
+}: {
+  onRequestAccess?: () => void;
+}) {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -68,68 +84,82 @@ export function HeroSection({ onRequestAccess }: { onRequestAccess?: () => void 
         animate="visible"
         className="relative z-10 flex min-h-[500px] flex-col items-center justify-center px-4 py-16 text-center max-w-5xl mx-auto"
       >
-      <motion.h1
-        variants={itemVariants}
-        className="mb-8 text-3xl sm:text-5xl md:text-7xl font-normal tracking-tight font-nevera text-white leading-tight flex flex-col items-center gap-2"
-      >
-        <span className="block whitespace-nowrap">You bring the ambition.</span>
-        <span className="block bg-gradient-to-r from-primary to-[#60a5fa] bg-clip-text text-transparent whitespace-nowrap">
-          We build the system to scale it.
-        </span>
-      </motion.h1>
-
-      <motion.p
-        variants={itemVariants}
-        className="mb-10 max-w-4xl text-center leading-relaxed font-libra"
-      >
-        <span className="block text-lg sm:text-xl text-white font-bold mb-3">
-          NURONE is an AI-augmented operating team of elite engineers, product architects and growth hackers.
-        </span>
-        <span className="block text-sm sm:text-base text-gray-400 font-medium max-w-3xl mx-auto">
-          We help ambitious founders turn ideas, broken MVPs, and existing businesses into scalable products, automated systems, and revenue growth engines built to dominate their market.
-        </span>
-      </motion.p>
-
-    
-
-      <motion.div variants={itemVariants} className="flex gap-4">
-        <Button 
-          onClick={onRequestAccess}
-          size="lg" 
-          className="bg-white text-[#0f0f11] hover:bg-white/90 rounded-xl font-bold px-8 py-3 font-libra cursor-pointer"
+        <motion.h1
+          variants={itemVariants}
+          className="mb-8 text-3xl sm:text-5xl md:text-7xl font-normal tracking-tight font-nevera text-white leading-tight flex flex-col items-center gap-2"
         >
-          Request Access
-        </Button>
-        <Button size="lg" variant="outline" className="border border-blue-500/30 bg-[#070913e0] text-[#8da2fb] hover:border-blue-400/50 hover:bg-blue-500/10 rounded-xl font-bold px-8 py-3 font-libra shadow-[0_0_15px_rgba(59,130,246,0.15)]">
-          Explore Labs
-        </Button>
-      </motion.div>
+          <span className="block whitespace-nowrap">
+            You bring the ambition.
+          </span>
+          <span className="block bg-gradient-to-r from-primary to-[#60a5fa] bg-clip-text text-transparent whitespace-nowrap">
+            We build the system to scale it.
+          </span>
+        </motion.h1>
 
-      <motion.div
-        variants={itemVariants}
-        className="mt-20 flex flex-wrap items-center justify-center gap-6 sm:gap-16 text-sm text-muted-foreground font-libra"
-      >
-        <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-          <div className="text-3xl font-extrabold text-foreground">
-            <AnimatedCounter value={72} />h
+        <motion.p
+          variants={itemVariants}
+          className="mb-10 max-w-4xl text-center leading-relaxed font-libra"
+        >
+          <span className="block text-lg sm:text-xl text-white font-bold mb-3">
+            NURONE is an AI-augmented operating team of elite engineers, product
+            architects and growth hackers.
+          </span>
+          <span className="block text-sm sm:text-base text-gray-400 font-medium max-w-3xl mx-auto">
+            We help ambitious founders turn ideas, broken MVPs, and existing
+            businesses into scalable products, automated systems, and revenue
+            growth engines built to dominate their market.
+          </span>
+        </motion.p>
+
+        <motion.div variants={itemVariants} className="flex gap-4">
+          <Button
+            onClick={onRequestAccess}
+            size="lg"
+            className="bg-white text-[#0f0f11] hover:bg-white/90 rounded-xl font-bold px-8 py-3 font-libra cursor-pointer"
+          >
+            Request Access
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            className="border border-blue-500/30 bg-[#070913e0] text-[#8da2fb] hover:border-blue-400/50 hover:bg-blue-500/10 rounded-xl font-bold px-8 py-3 font-libra shadow-[0_0_15px_rgba(59,130,246,0.15)]"
+          >
+            Explore Labs
+          </Button>
+        </motion.div>
+
+        <motion.div
+          variants={itemVariants}
+          className="mt-20 flex flex-wrap items-center justify-center gap-6 sm:gap-16 text-sm text-muted-foreground font-libra"
+        >
+          <div className="flex flex-col items-center text-center">
+            <div className="text-3xl font-extrabold text-foreground">
+              <AnimatedCounter value={72} />h
+            </div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground/80 mt-1 font-bold">
+              Prototype sprint
+            </div>
           </div>
-          <div className="text-xs uppercase tracking-wider text-muted-foreground/80 mt-1 font-bold">Protype sprint</div>
-        </div>
-        <div className="h-8 w-px bg-border hidden sm:block" />
-        <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-          <div className="text-3xl font-extrabold text-foreground">
-            <AnimatedCounter value={100} />%
+          <div className="h-8 w-px bg-border hidden sm:block" />
+          <div className="flex flex-col items-center text-center">
+            <div className="text-3xl font-extrabold text-foreground">
+              <AnimatedCounter value={100} />%
+            </div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground/80 mt-1 font-bold">
+              Tracked execution
+            </div>
           </div>
-          <div className="text-xs uppercase tracking-wider text-muted-foreground/80 mt-1 font-bold">tracked execution</div>
-        </div>
-        <div className="h-8 w-px bg-border hidden sm:block" />
-        <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-          <div className="text-3xl font-extrabold text-foreground">
-            $<AnimatedCounter value={10} />M+
+          <div className="h-8 w-px bg-border hidden sm:block" />
+          <div className="flex flex-col items-center text-center">
+            <div className="text-3xl font-extrabold text-foreground">
+              $<AnimatedCounter value={10} />
+              M+
+            </div>
+            <div className="text-xs uppercase tracking-wider text-muted-foreground/80 mt-1 font-bold">
+              Revenue pipeline
+            </div>
           </div>
-          <div className="text-xs uppercase tracking-wider text-muted-foreground/80 mt-1 font-bold">revenu pipeline</div>
-        </div>
-      </motion.div>
+        </motion.div>
       </motion.div>
     </div>
   );
